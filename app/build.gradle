@@ -1,0 +1,57 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.example.symjatester'
+    compileSdk 33
+
+    packagingOptions {
+        exclude 'graphml.xsd'
+        exclude 'xlink.xsd'
+        exclude 'viz.xsd'
+        exclude 'gexf.xsd'
+    }
+
+    defaultConfig {
+        applicationId "com.example.symjatester"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'org.matheclipse:matheclipse-core:2.0.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
+    annotationProcessor 'org.apache.logging.log4j:log4j-core:2.20.0'
+    //implementation('org.slf4j:slf4j-api:1.7.36')
+    //{
+    //exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    //exclude group: 'org.slf4j', module: 'slf4j-jdk14'
+    //exclude group: 'org.slf4j', module: 'slf4j-simple'
+    //}
+    //implementation('org.slf4j:slf4j-nop:1.7.30')
+}
