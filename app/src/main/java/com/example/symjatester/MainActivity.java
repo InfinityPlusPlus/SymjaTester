@@ -8,10 +8,9 @@ import android.widget.TextView;
 import org.matheclipse.core.eval.ExprEvaluator;
 import org.matheclipse.core.expression.F;
 import org.matheclipse.core.interfaces.IExpr;
-import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
+    // private static final String TAG = "MainActivity";
 
     private EditText inputFunction;
     private TextView result;
@@ -33,9 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             LoggerFix.fix();
-            F.initSymbols();
-            ExprEvaluator exprEvaluator = new ExprEvaluator();
-            Log.d(TAG, String.valueOf(exprEvaluator.eval("test")));
+            // ExprEvaluator exprEvaluator = new ExprEvaluator();
+            // Log.d(TAG, String.valueOf(exprEvaluator.eval("test")));
         } catch (Exception e) {
             e.printStackTrace();
         }
