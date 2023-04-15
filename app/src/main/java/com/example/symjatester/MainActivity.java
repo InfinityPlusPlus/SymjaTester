@@ -8,8 +8,10 @@ import android.widget.TextView;
 import org.matheclipse.core.eval.ExprEvaluator;
 import org.matheclipse.core.expression.F;
 import org.matheclipse.core.interfaces.IExpr;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
     private EditText inputFunction;
     private TextView result;
@@ -28,13 +30,23 @@ public class MainActivity extends AppCompatActivity {
             String derivative = calculateDerivative(function);
             result.setText(derivative);
         });
+
+        try {
+            LoggerFix.fix();
+            F.initSymbols();
+            ExprEvaluator exprEvaluator = new ExprEvaluator();
+            Log.d(TAG, String.valueOf(exprEvaluator.eval("test")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private String calculateDerivative(String function) {
         ExprEvaluator evaluator = new ExprEvaluator();
+        IExpr x = evaluator.parse("x");
         IExpr inputExpr = evaluator.parse(function);
-        IExpr derivativeExpr = F.D(inputExpr, F.x);
-        IExpr simplifiedDerivative = evaluator.eval(derivativeExpr);
-        return simplifiedDerivative.toString();
+        IExpr derivativeExpr = F.D(inputExpr, x);
+        IExpr result = evaluator.eval(derivativeExpr);
+        return result.toString();
     }
 }
